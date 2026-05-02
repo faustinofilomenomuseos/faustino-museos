@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Faustino Filomeno | Museólogo</title>
+<meta name="description" content="Museólogo recorriendo los museos del mundo. Videos, historia y contenido sobre patrimonio cultural.">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500&family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --negro: #0a0908;
+    --crema: #f4ede4;
+    --dorado: #c9a84c;
+    --dorado-claro: #e8c97a;
+    --gris: #2a2825;
+    --texto: #1a1816;
+    --texto-suave: #6b6560;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--crema); color: var(--texto); overflow-x: hidden; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.2rem 4rem;
+    background: rgba(10,9,8,0.95); backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(201,168,76,0.2);
+  }
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif; font-size: 1.1rem;
+    color: var(--dorado); letter-spacing: 0.1em; text-decoration: none;
+    display: flex; flex-direction: column; line-height: 1.1;
+  }
+  .nav-logo span {
+    font-family: 'DM Sans', sans-serif; font-size: 0.6rem; font-weight: 300;
+    letter-spacing: 0.2em; text-transform: uppercase; color: rgba(244,237,228,0.45);
+  }
+  .nav-links { display: flex; align-items: center; gap: 3rem; list-style: none; }
+  .nav-links a { display: inline-flex; align-items: center; min-height: 2.25rem; font-size: 0.95rem; font-weight: 500; letter-spacing: 0.11em; text-transform: uppercase; color: rgba(244,237,228,0.7); text-decoration: none; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--dorado); }
+  .nav-toggle {
+    display: none;
+    width: 2.75rem;
+    height: 2.75rem;
+    border: 1px solid rgba(201,168,76,0.35);
+    background: transparent;
+    color: var(--crema);
+    border-radius: 0;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+  .nav-toggle:focus-visible { outline: 2px solid var(--dorado); outline-offset: 2px; }
+  .nav-toggle-lines { display: inline-flex; flex-direction: column; gap: 0.3rem; }
+  .nav-toggle-lines span { width: 1.2rem; height: 1px; background: var(--crema); display: block; transition: transform 0.2s, opacity 0.2s; }
+
+  /* HERO */
+  .hero { min-height: 100vh; background: var(--negro); display: grid; grid-template-columns: 1fr 1fr; align-items: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 70% 50%, rgba(201,168,76,0.08) 0%, transparent 70%); }
+  .hero-text { padding: 8rem 4rem 4rem 6rem; position: relative; z-index: 2; }
+  .hero-tag { font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--dorado); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 1rem; }
+  .hero-tag::before { content: ''; display: block; width: 2rem; height: 1px; background: var(--dorado); }
+  .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(3rem, 5vw, 5rem); font-weight: 900; color: var(--crema); line-height: 1.05; margin-bottom: 1.5rem; }
+  .hero h1 em { font-style: italic; color: var(--dorado); }
+  .hero-sub { font-size: 1rem; color: rgba(244,237,228,0.55); line-height: 1.8; max-width: 400px; margin-bottom: 2.5rem; }
+  .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary { padding: 0.85rem 2rem; background: var(--dorado); color: var(--negro); font-size: 0.8rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; border: none; cursor: pointer; display: inline-block; transition: background 0.2s, transform 0.2s; }
+  .btn-primary:hover { background: var(--dorado-claro); transform: translateY(-2px); }
+  .btn-secondary { padding: 0.85rem 2rem; background: transparent; color: var(--crema); font-size: 0.8rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; border: 1px solid rgba(244,237,228,0.3); display: inline-block; transition: border-color 0.2s, transform 0.2s; }
+  .btn-secondary:hover { border-color: var(--dorado); color: var(--dorado); transform: translateY(-2px); }
+  .hero-visual { height: 100vh; position: relative; display: flex; align-items: center; justify-content: center; }
+  .hero-ornament { font-family: 'Playfair Display', serif; font-size: clamp(10rem, 18vw, 18rem); font-weight: 900; font-style: italic; color: rgba(201,168,76,0.06); line-height: 1; user-select: none; position: absolute; }
+  .hero-stats { position: relative; z-index: 2; display: flex; flex-direction: column; gap: 2rem; }
+  .stat { border-left: 2px solid var(--dorado); padding-left: 1.5rem; }
+  .stat-num { font-family: 'Bebas Neue', sans-serif; font-size: 3rem; color: var(--crema); line-height: 1; }
+  .stat-label { font-size: 0.75rem; color: rgba(244,237,228,0.4); letter-spacing: 0.1em; text-transform: uppercase; }
+
+  /* SECTIONS */
+  section { padding: 6rem 0; }
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 4rem; }
+  .section-header { margin-bottom: 3.5rem; }
+  .section-tag { font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--dorado); margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.75rem; }
+  .section-tag::before { content: ''; display: block; width: 1.5rem; height: 1px; background: var(--dorado); }
+  .section-title { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 3.5vw, 3rem); font-weight: 700; line-height: 1.15; }
+
+  /* VIDEOS */
+  #videos { background: var(--negro); }
+  .videos-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.5rem; }
+  .video-card { background: var(--gris); border: 1px solid rgba(201,168,76,0.1); overflow: hidden; transition: transform 0.3s, border-color 0.3s; cursor: pointer; text-decoration: none; display: block; }
+  .video-card:hover { transform: translateY(-4px); border-color: rgba(201,168,76,0.4); }
+  .video-card:focus-visible { outline: 2px solid var(--dorado); outline-offset: 2px; }
+  .video-thumb { position: relative; aspect-ratio: 16/9; background: #111; overflow: hidden; }
+  .video-thumb img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; }
+  .video-card:hover .video-thumb img { transform: scale(1.05); }
+  .video-play-overlay { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.25); opacity: 0; transition: opacity 0.3s; }
+  .video-card:hover .video-play-overlay { opacity: 1; }
+  .video-play-overlay svg { width: 52px; height: 52px; }
+  .video-info { padding: 1rem 1.25rem; }
+  .video-date { font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--dorado); margin-bottom: 0.4rem; }
+  .video-title { font-family: 'Playfair Display', serif; font-size: 1rem; color: var(--crema); line-height: 1.4; }
+  .videos-loading { text-align: center; color: rgba(244,237,228,0.4); padding: 3rem; font-size: 0.9rem; grid-column: 1/-1; }
+  .videos-cta { text-align: center; margin-top: 3rem; }
+
+  /* MUSEOS */
+  #museos { background: var(--crema); }
+  .museos-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; }
+  .museo-card { background: white; border: 1px solid rgba(0,0,0,0.08); overflow: hidden; transition: transform 0.3s, box-shadow 0.3s; cursor: pointer; text-decoration: none; display: block; color: var(--texto); }
+  .museo-card:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+  .museo-card:focus-visible { outline: 2px solid var(--dorado); outline-offset: 2px; }
+  .museo-card.is-unavailable { opacity: 0.92; }
+  .museo-card.is-unavailable .museo-ver-mas { color: var(--texto-suave); }
+  .museo-img { aspect-ratio: 4/3; overflow: hidden; position: relative; }
+  .museo-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; filter: grayscale(15%); }
+  .museo-card:hover .museo-img img { transform: scale(1.05); filter: grayscale(0%); }
+  .museo-country { position: absolute; top: 0.75rem; left: 0.75rem; background: var(--negro); color: var(--dorado); font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.3rem 0.7rem; }
+  .museo-body { padding: 1.25rem; }
+  .museo-name { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; margin-bottom: 0.35rem; line-height: 1.3; }
+  .museo-city { font-size: 0.75rem; color: var(--texto-suave); margin-bottom: 0.75rem; }
+  .museo-desc { font-size: 0.82rem; color: var(--texto-suave); line-height: 1.7; margin-bottom: 0.85rem; }
+  .museo-tag { display: inline-block; font-size: 0.65rem; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.25rem 0.6rem; border: 1px solid rgba(0,0,0,0.12); color: var(--texto-suave); margin-right: 0.3rem; margin-bottom: 0.3rem; }
+  .museo-ver-mas { display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--dorado); margin-top: 0.5rem; }
+
+  /* MODAL */
+  .museo-modal { display: none; position: fixed; inset: 0; z-index: 200; background: rgba(10,9,8,0.92); overflow-y: auto; padding: 2rem; }
+  .museo-modal.active { display: flex; align-items: flex-start; justify-content: center; }
+  .museo-modal-inner { background: var(--crema); max-width: 860px; width: 100%; margin: 4rem auto; position: relative; }
+  .museo-modal-close { position: absolute; top: 1rem; right: 1rem; background: var(--negro); color: var(--crema); border: none; cursor: pointer; width: 2.5rem; height: 2.5rem; font-size: 1.2rem; display: flex; align-items: center; justify-content: center; z-index: 10; }
+  .museo-modal-img { aspect-ratio: 16/7; overflow: hidden; }
+  .museo-modal-img img { width: 100%; height: 100%; object-fit: cover; }
+  .museo-modal-body { padding: 2.5rem; }
+  .museo-modal-country { font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--dorado); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; }
+  .museo-modal-country::before { content: ''; display: block; width: 1.5rem; height: 1px; background: var(--dorado); }
+  .museo-modal-title { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 900; margin-bottom: 0.5rem; line-height: 1.2; }
+  .museo-modal-city { font-size: 0.85rem; color: var(--texto-suave); margin-bottom: 1.5rem; }
+  .museo-modal-desc { font-size: 0.95rem; line-height: 1.9; color: var(--texto-suave); margin-bottom: 1.5rem; }
+  .museo-modal-facts { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem; }
+  .museo-fact { background: white; padding: 1rem 1.25rem; border: 1px solid rgba(0,0,0,0.06); }
+  .museo-fact-label { font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--dorado); margin-bottom: 0.3rem; }
+  .museo-fact-val { font-size: 0.9rem; font-weight: 500; }
+
+  /* SOBRE */
+  #sobre { background: var(--negro); }
+  .sobre-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 5rem; align-items: center; }
+  .sobre-img-wrap { position: relative; }
+  .sobre-img-frame { aspect-ratio: 3/4; background: var(--gris); border: 1px solid rgba(201,168,76,0.2); overflow: hidden; }
+  .sobre-img-frame img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .sobre-placeholder { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-size: 4rem; color: rgba(201,168,76,0.3); }
+  .sobre-deco { position: absolute; top: -1rem; right: -1rem; width: 60%; height: 60%; border: 1px solid rgba(201,168,76,0.2); z-index: -1; }
+  .sobre-text .section-title { color: var(--crema); margin-bottom: 1.5rem; }
+  .sobre-bio { font-size: 0.95rem; color: rgba(244,237,228,0.6); line-height: 1.9; margin-bottom: 1.5rem; }
+  .sobre-items { display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 2rem; }
+  .sobre-item { display: flex; align-items: center; gap: 1rem; font-size: 0.85rem; color: rgba(244,237,228,0.7); }
+  .sobre-item::before { content: '→'; color: var(--dorado); }
+
+  /* CONTACTO */
+  #contacto { background: var(--crema); }
+  .contacto-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+  .contacto-desc { font-size: 0.95rem; color: var(--texto-suave); line-height: 1.8; margin-bottom: 2rem; }
+  .contacto-links { display: flex; flex-direction: column; gap: 1rem; }
+  .contacto-link { display: flex; align-items: center; gap: 1rem; text-decoration: none; color: var(--texto); font-size: 0.9rem; transition: color 0.2s; }
+  .contacto-link:hover { color: var(--dorado); }
+  .contacto-link-icon { width: 2.5rem; height: 2.5rem; background: var(--negro); color: var(--dorado); display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; }
+  .form { display: flex; flex-direction: column; gap: 1rem; }
+  .form input, .form textarea { width: 100%; padding: 0.9rem 1.1rem; background: white; border: 1px solid rgba(0,0,0,0.12); font-family: 'DM Sans', sans-serif; font-size: 0.9rem; color: var(--texto); outline: none; transition: border-color 0.2s; }
+  .form input:focus, .form textarea:focus { border-color: var(--dorado); }
+  .form textarea { height: 130px; resize: vertical; }
+  .form input::placeholder, .form textarea::placeholder { color: #aaa; }
+
+  /* FOOTER */
+  footer { background: var(--negro); border-top: 1px solid rgba(201,168,76,0.15); padding: 2rem 4rem; display: flex; justify-content: space-between; align-items: center; }
+  .footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.2rem; color: var(--dorado); letter-spacing: 0.1em; }
+  .footer-copy { font-size: 0.75rem; color: rgba(244,237,228,0.3); }
+
+  /* ANIM */
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+  .hero-text > * { animation: fadeUp 0.8s ease forwards; opacity: 0; }
+  .hero-tag { animation-delay: 0.1s; } .hero h1 { animation-delay: 0.25s; } .hero-sub { animation-delay: 0.4s; } .hero-btns { animation-delay: 0.55s; }
+
+  /* RESPONSIVE */
+  @media (max-width: 1100px) and (min-width: 901px) {
+    nav { padding: 1rem 2.25rem; }
+    .nav-links { gap: 2rem; }
+    .nav-links a { font-size: 0.88rem; }
+  }
+
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .hero { grid-template-columns: 1fr; } .hero-visual { display: none; } .hero-text { padding: 7rem 1.5rem 3rem; }
+    .container { padding: 0 1.5rem; }
+    .sobre-grid, .contacto-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .museo-modal-facts { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+  }
+
+  @media (max-width: 767px) {
+    nav { padding: 0.85rem 1rem; align-items: center; }
+    .nav-logo { font-size: 0.92rem; letter-spacing: 0.08em; }
+    .nav-logo span { font-size: 0.54rem; letter-spacing: 0.14em; }
+    .nav-toggle { display: inline-flex; }
+    .nav-links {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0;
+      background: rgba(10,9,8,0.98);
+      border-top: 1px solid rgba(201,168,76,0.2);
+      border-bottom: 1px solid rgba(201,168,76,0.2);
+      padding: 0.5rem 1rem 0.9rem;
+    }
+    nav.is-open .nav-links { display: flex; }
+    .nav-links a {
+      width: 100%;
+      min-height: 2.9rem;
+      padding: 0.7rem 0.25rem;
+      font-size: 0.9rem;
+      letter-spacing: 0.11em;
+    }
+    nav.is-open .nav-toggle-lines span:nth-child(1) { transform: translateY(0.4rem) rotate(45deg); }
+    nav.is-open .nav-toggle-lines span:nth-child(2) { opacity: 0; }
+    nav.is-open .nav-toggle-lines span:nth-child(3) { transform: translateY(-0.4rem) rotate(-45deg); }
+    .sobre-grid { grid-template-columns: 1fr; gap: 1.75rem; }
+    .sobre-img-wrap { order: 1; }
+    .sobre-text { order: 2; }
+  }
+</style>
+</head>
+<body>
+
+<nav id="site-nav">
+  <a href="#sobre" class="nav-logo">
+    Faustino Filomeno
+    <span>Museólogo</span>
+  </a>
+  <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menú" aria-controls="nav-menu" aria-expanded="false" type="button">
+    <span class="nav-toggle-lines" aria-hidden="true"><span></span><span></span><span></span></span>
+  </button>
+  <ul class="nav-links" id="nav-menu">
+    <li><a href="#videos">Videos</a></li>
+    <li><a href="#museos">Museos</a></li>
+    <li><a href="#sobre">Sobre mí</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+    <li><a href="visitas.html">Visitas guiadas</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-text">
+    <div class="hero-tag">Museólogo · Tucumán, Argentina</div>
+    <h1>Los museos<br>del mundo<br><em>al descubierto</em></h1>
+    <p class="hero-sub">Recorro los museos del planeta para contarte lo que hay adentro, lo que se guarda, y lo que casi se pierde para siempre.</p>
+    <div class="hero-btns">
+      <a href="#videos" class="btn-primary">Ver videos</a>
+      <a href="#museos" class="btn-secondary">Explorar museos</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="hero-ornament">M</div>
+    <div class="hero-stats">
+      <div class="stat"><div class="stat-num">ARG</div><div class="stat-label">Recorriendo el país</div></div>
+      <div class="stat"><div class="stat-num">10K+</div><div class="stat-label">Piezas documentadas</div></div>
+      <div class="stat"><div class="stat-num">∞</div><div class="stat-label">Historias por contar</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="videos">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">Canal de YouTube</div>
+      <h2 class="section-title" style="color:var(--crema)">Últimos <em style="font-style:italic;color:var(--dorado)">videos</em></h2>
+    </div>
+    <div class="videos-grid" id="videos-grid">
+      <div class="videos-loading">Cargando videos del canal...</div>
+    </div>
+    <div class="videos-cta">
+      <a href="https://www.youtube.com/@FaustinoFilomeno" target="_blank" class="btn-primary">Ver todos los videos en YouTube</a>
+    </div>
+  </div>
+</section>
+
+<section id="museos">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">Directorio mundial</div>
+      <h2 class="section-title">Museos del <em style="font-style:italic;color:var(--dorado)">mundo</em></h2>
+    </div>
+    <div class="museos-grid" id="museos-grid"></div>
+  </div>
+</section>
+
+<div class="museo-modal" id="museo-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-hidden="true" tabindex="-1">
+  <div class="museo-modal-inner">
+    <button class="museo-modal-close" onclick="cerrarModal()">✕</button>
+    <div class="museo-modal-img"><img id="modal-img" src="" alt=""></div>
+    <div class="museo-modal-body">
+      <div class="museo-modal-country" id="modal-country"></div>
+      <h2 class="museo-modal-title" id="modal-title"></h2>
+      <div class="museo-modal-city" id="modal-city"></div>
+      <p class="museo-modal-desc" id="modal-desc"></p>
+      <div class="museo-modal-facts" id="modal-facts"></div>
+      <div id="modal-tags"></div>
+    </div>
+  </div>
+</div>
+
+<section id="sobre">
+  <div class="container">
+    <div class="sobre-grid">
+      <div class="sobre-img-wrap">
+        <div class="sobre-img-frame"><img src="images/profile/faustino-filomeno.jpg" alt="Foto de Faustino Filomeno" loading="lazy"></div>
+        <div class="sobre-deco"></div>
+      </div>
+      <div class="sobre-text">
+        <div class="section-tag">Sobre mí</div>
+        <h2 class="section-title" style="color:var(--crema)">Soy Faustino,<br><em style="font-style:italic;color:var(--dorado)">museólogo</em></h2>
+        <p class="sobre-bio">Museólogo, nacido y criado en Tucumán. Creo que los museos del mundo tienen historias increíbles que casi nadie conoce — y me propuse cambiar eso.</p>
+        <p class="sobre-bio">Mi canal de YouTube nació para llevar los museos a cualquier persona con conexión a internet. Sin tecnicismos. Sin aburrimiento. Con todo el contexto que hace que una pieza deje de ser un objeto y se convierta en una historia.</p>
+        <div class="sobre-items">
+          <div class="sobre-item">Museólogo graduado — Universidad Nacional de Tucumán</div>
+          <div class="sobre-item">Recorriendo museos de todo el mundo</div>
+          <div class="sobre-item">Docente universitario</div>
+          <div class="sobre-item">Tucumán, Argentina</div>
+        </div>
+        <a href="#contacto" class="btn-primary">Trabajemos juntos</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contacto">
+  <div class="container">
+    <div class="contacto-grid">
+      <div>
+        <div class="section-tag">Contacto</div>
+        <h2 class="section-title" style="margin-bottom:1rem;">¿Hablamos?</h2>
+        <p class="contacto-desc">Si tenés un museo, una institución, o simplemente querés colaborar en algo relacionado con patrimonio, museología o contenido — escribime.</p>
+        <div class="contacto-links">
+          <a href="https://www.youtube.com/@FaustinoFilomeno" target="_blank" class="contacto-link">
+            <div class="contacto-link-icon">▶</div><span>YouTube — @FaustinoFilomeno</span>
+          </a>
+          <a href="https://www.tiktok.com/@faustino.filo" target="_blank" rel="noopener" class="contacto-link">
+            <div class="contacto-link-icon">♪</div><span>TikTok — @explore</span>
+          </a>
+          <a href="mailto:faustinofilomeno.museos@gmail.com" class="contacto-link">
+            <div class="contacto-link-icon">✉</div><span>faustinofilomeno.museos@gmail.com</span>
+          </a>
+          <a href="https://www.instagram.com/faustinomuseos/" target="_blank" class="contacto-link">
+            <div class="contacto-link-icon">◈</div><span>Instagram — @faustinomuseos</span>
+          </a>
+        </div>
+      </div>
+      <div>
+        <form class="form" onsubmit="handleForm(event)">
+          <input type="text" name="nombre" placeholder="Tu nombre" required>
+          <input type="email" name="email" placeholder="Tu email" required>
+          <input type="text" name="asunto" placeholder="Asunto">
+          <textarea name="mensaje" placeholder="Tu mensaje..." required></textarea>
+          <button type="submit" class="btn-primary" style="align-self:flex-start">Enviar mensaje</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">Faustino Filomeno</div>
+  <div class="footer-copy">© 2025 · Museólogo · Tucumán, Argentina</div>
+</footer>
+
+<script>
+const config = {
+  ytKey: 'AIzaSyA1UBuiZWF04pZS1H118G7sQ0ANBg5tFfM',
+  ytHandleQuery: 'FaustinoFilomeno',
+  ytChannelUrl: 'https://www.youtube.com/@FaustinoFilomeno',
+  maxVideos: 6,
+  contactEmail: 'faustinofilomeno.museos@gmail.com',
+  formspreeEndpoint: 'https://formspree.io/f/maqvqnor',
+  detailPages: {
+    louvre: 'louvre.html',
+    british: 'british.html',
+    moma: 'moma.html',
+    prado: 'prado.html',
+    hermitage: 'hermitage.html',
+    mnba: 'mnba.html'
+  }
+};
+
+const MUSEOS = [
+  { id:'louvre', nombre:'Museo del Louvre', pais:'🇫🇷 Francia', ciudad:'📍 París, Francia',
+    descCorta:'El museo más visitado del mundo. Desde la Venus de Milo hasta la Mona Lisa, 9 siglos de historia en un solo edificio.',
+    desc:'El museo más visitado del mundo con más de 9 millones de visitantes anuales. Alberga más de 380.000 obras que abarcan desde la prehistoria hasta el siglo XIX. Construido originalmente como fortaleza medieval en 1190, fue transformado en residencia real y finalmente en museo en 1793 durante la Revolución Francesa. La Pirámide de vidrio de I.M. Pei, inaugurada en 1989, se convirtió en su entrada icónica.',
+    img:'images/museos/louvre.jpg',
+    tags:['Arte','Historia','Antigüedad','Pintura'],
+    facts:[{l:'Fundado',v:'1793'},{l:'Obras',v:'380.000+'},{l:'Visitantes/año',v:'9 millones'},{l:'Pieza estrella',v:'Mona Lisa'}]
+  },
+  { id:'british', nombre:'British Museum', pais:'🇬🇧 Reino Unido', ciudad:'📍 Londres, Reino Unido',
+    descCorta:'El primer museo público del mundo. 8 millones de objetos que abarcan 2 millones de años de historia humana.',
+    desc:'Fundado en 1753, fue el primer museo público nacional del mundo. Su colección abarca 2 millones de años de historia humana con más de 8 millones de objetos, aunque solo una fracción se exhibe permanentemente. Entre sus piezas más famosas están la Piedra Rosetta y los Mármoles del Partenón, estos últimos en disputa con Grecia desde hace décadas.',
+    img:'images/museos/british.jpg',
+    tags:['Arqueología','Historia mundial','Antigüedad'],
+    facts:[{l:'Fundado',v:'1753'},{l:'Objetos',v:'8 millones+'},{l:'Visitantes/año',v:'6 millones'},{l:'Pieza estrella',v:'Piedra Rosetta'}]
+  },
+  { id:'moma', nombre:'MoMA', pais:'🇺🇸 Estados Unidos', ciudad:'📍 Nueva York, EE.UU.',
+    descCorta:'La institución que define qué es arte moderno. Desde Van Gogh hasta Warhol, el museo más influyente del siglo XX.',
+    desc:'El Museo de Arte Moderno es considerado la institución más influyente en la definición del arte moderno y contemporáneo. Fundado en 1929, su colección incluye más de 200.000 piezas que abarcan pintura, escultura, fotografía, cine y diseño industrial. La Noche Estrellada de Van Gogh es su obra más icónica.',
+    img:'https://commons.wikimedia.org/wiki/Special:FilePath/Moma_ny.jpg?width=1280',
+    tags:['Arte Moderno','Contemporáneo','Diseño'],
+    facts:[{l:'Fundado',v:'1929'},{l:'Obras',v:'200.000+'},{l:'Visitantes/año',v:'3 millones'},{l:'Pieza estrella',v:'La Noche Estrellada'}]
+  },
+  { id:'prado', nombre:'Museo del Prado', pais:'🇪🇸 España', ciudad:'📍 Madrid, España',
+    descCorta:'La pinacoteca más importante del mundo hispanohablante. Goya, Velázquez y El Bosco en un edificio neoclásico imponente.',
+    desc:'La pinacoteca más importante del mundo hispanohablante y una de las más relevantes del planeta. Su colección se centra en arte europeo del siglo XII al XIX, con especial énfasis en los maestros españoles. Goya, Velázquez, El Bosco y Rubens son sus grandes estrellas. El edificio neoclásico fue diseñado por Juan de Villanueva a finales del siglo XVIII.',
+    img:'https://commons.wikimedia.org/wiki/Special:FilePath/The_Prado_Museum_(Museo_del_Prado),_Madrid_(2).jpg?width=1280',
+    tags:['Pintura','Arte español','Renacimiento'],
+    facts:[{l:'Fundado',v:'1819'},{l:'Obras',v:'20.000+'},{l:'Visitantes/año',v:'3,2 millones'},{l:'Pieza estrella',v:'Las Meninas'}]
+  },
+  { id:'hermitage', nombre:'Museo Hermitage', pais:'🇷🇺 Rusia', ciudad:'📍 San Petersburgo, Rusia',
+    descCorta:'Uno de los museos más grandes del planeta. El Palacio de Invierno de los zares convertido en templo del arte mundial.',
+    desc:'Uno de los museos más grandes del mundo con más de 3 millones de obras. El complejo incluye el Palacio de Invierno, antigua residencia de los zares rusos. La colección abarca arte egipcio antiguo, arte europeo de los siglos XIII al XX y arte de culturas de todo el mundo. Fue fundado por la zarina Catalina la Grande en 1764.',
+    img:'https://commons.wikimedia.org/wiki/Special:FilePath/Hermitage_museum_2.jpg?width=1280',
+    tags:['Arte europeo','Historia rusa','Arte oriental'],
+    facts:[{l:'Fundado',v:'1764'},{l:'Obras',v:'3 millones+'},{l:'Visitantes/año',v:'4 millones'},{l:'Edificios',v:'5 palacios'}]
+  },
+  { id:'mnba', nombre:'Museo Nacional de Bellas Artes', pais:'🇦🇷 Argentina', ciudad:'📍 Buenos Aires, Argentina',
+    descCorta:'El museo de arte más importante de Argentina. 12.000 obras, entrada gratuita y los grandes nombres del arte argentino.',
+    desc:'El museo de arte más importante de Argentina y uno de los principales de América Latina. Fundado en 1895, reúne más de 12.000 obras de artistas argentinos e internacionales. Su colección incluye obras de Rodin, Goya, Rembrandt y los grandes pintores argentinos del siglo XIX y XX. La entrada es siempre gratuita, lo que lo convierte en un espacio accesible para todos.',
+    img:'https://commons.wikimedia.org/wiki/Special:FilePath/Museo_Nacional_de_Bellas_Artes_(Buenos_Aires)_-_20231202_132951.jpg?width=1280',
+    tags:['Arte argentino','Latinoamérica','Gratis'],
+    facts:[{l:'Fundado',v:'1895'},{l:'Obras',v:'12.000+'},{l:'Entrada',v:'Gratuita'},{l:'Ubicación',v:'Recoleta, CABA'}]
+  }
+];
+
+const utils = {
+  formatDateEs(dateISO) {
+    const d = new Date(dateISO);
+    if (Number.isNaN(d.getTime())) return '';
+    return d.toLocaleDateString('es-AR', { day: 'numeric', month: 'long', year: 'numeric' });
+  },
+  setGridMessage(grid, messageHtml) {
+    grid.innerHTML = `<div class="videos-loading">${messageHtml}</div>`;
+  }
+};
+
+const youtube = {
+  async fetchJSON(url) {
+    const res = await fetch(url);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    return res.json();
+  },
+  async getChannelId() {
+    const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${encodeURIComponent(config.ytHandleQuery)}&type=channel&key=${config.ytKey}`;
+    const data = await this.fetchJSON(url);
+    return data?.items?.[0]?.id?.channelId || null;
+  },
+  async getLatestVideos(channelId) {
+    const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${encodeURIComponent(channelId)}&maxResults=${config.maxVideos}&order=date&type=video&key=${config.ytKey}`;
+    const data = await this.fetchJSON(url);
+    return Array.isArray(data?.items) ? data.items : [];
+  },
+  createPlayIcon() {
+    const ns = 'http://www.w3.org/2000/svg';
+    const svg = document.createElementNS(ns, 'svg');
+    svg.setAttribute('viewBox', '0 0 68 48');
+    const p1 = document.createElementNS(ns, 'path');
+    p1.setAttribute('d', 'M66.52 7.74c-.78-2.93-2.49-5.41-5.42-6.19C55.79.13 34 0 34 0S12.21.13 6.9 1.55c-2.93.78-4.63 3.26-5.42 6.19C.06 13.05 0 24 0 24s.06 10.95 1.48 16.26c.78 2.93 2.49 5.41 5.42 6.19C12.21 47.87 34 48 34 48s21.79-.13 27.1-1.55c2.93-.78 4.64-3.26 5.42-6.19C67.94 34.95 68 24 68 24s-.06-10.95-1.48-16.26z');
+    p1.setAttribute('fill', '#ff0000');
+    const p2 = document.createElementNS(ns, 'path');
+    p2.setAttribute('d', 'M45 24 27 14v20');
+    p2.setAttribute('fill', 'white');
+    svg.appendChild(p1);
+    svg.appendChild(p2);
+    return svg;
+  },
+  createVideoCard(video) {
+    const videoId = video?.id?.videoId;
+    const snippet = video?.snippet || {};
+    if (!videoId || !snippet?.title) return null;
+
+    const thumb = snippet?.thumbnails?.high?.url || snippet?.thumbnails?.medium?.url || '';
+    const date = utils.formatDateEs(snippet.publishedAt);
+
+    const card = document.createElement('a');
+    card.className = 'video-card';
+    card.href = `https://www.youtube.com/watch?v=${videoId}`;
+    card.target = '_blank';
+    card.rel = 'noopener';
+
+    const thumbWrap = document.createElement('div');
+    thumbWrap.className = 'video-thumb';
+
+    const img = document.createElement('img');
+    img.src = thumb;
+    img.alt = snippet.title;
+    img.loading = 'lazy';
+    thumbWrap.appendChild(img);
+
+    const overlay = document.createElement('div');
+    overlay.className = 'video-play-overlay';
+    overlay.appendChild(this.createPlayIcon());
+    thumbWrap.appendChild(overlay);
+
+    const info = document.createElement('div');
+    info.className = 'video-info';
+
+    const dateEl = document.createElement('div');
+    dateEl.className = 'video-date';
+    dateEl.textContent = date;
+
+    const titleEl = document.createElement('div');
+    titleEl.className = 'video-title';
+    titleEl.textContent = snippet.title;
+
+    info.appendChild(dateEl);
+    info.appendChild(titleEl);
+    card.appendChild(thumbWrap);
+    card.appendChild(info);
+    return card;
+  },
+  async render() {
+    const grid = document.getElementById('videos-grid');
+    utils.setGridMessage(grid, 'Cargando videos del canal...');
+
+    try {
+      const channelId = await this.getChannelId();
+      if (!channelId) throw new Error('channel_not_found');
+      const videos = await this.getLatestVideos(channelId);
+      if (!videos.length) {
+        utils.setGridMessage(grid, 'No hay videos recientes para mostrar por ahora.');
+        return;
+      }
+
+      grid.innerHTML = '';
+      videos.forEach(video => {
+        const card = this.createVideoCard(video);
+        if (card) grid.appendChild(card);
+      });
+
+      if (!grid.children.length) {
+        utils.setGridMessage(grid, 'No hay videos válidos para mostrar.');
+      }
+    } catch (error) {
+      utils.setGridMessage(
+        grid,
+        `No se pudieron cargar los videos. <a href="${config.ytChannelUrl}" target="_blank" rel="noopener" style="color:var(--dorado)">Ver canal →</a>`
+      );
+      console.warn('Fallo al cargar YouTube:', error);
+    }
+  }
+};
+
+const modal = {
+  el: null,
+  previousFocus: null,
+  init() {
+    this.el = document.getElementById('museo-modal');
+    this.el.addEventListener('click', (e) => {
+      if (e.target === this.el) this.close();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && this.el.classList.contains('active')) this.close();
+    });
+  },
+  open(data) {
+    if (!data) return;
+    this.previousFocus = document.activeElement;
+    document.getElementById('modal-img').src = data.img;
+    document.getElementById('modal-img').alt = data.nombre;
+    document.getElementById('modal-country').textContent = data.pais;
+    document.getElementById('modal-title').textContent = data.nombre;
+    document.getElementById('modal-city').textContent = data.ciudad;
+    document.getElementById('modal-desc').textContent = data.desc;
+    document.getElementById('modal-facts').innerHTML = data.facts.map((f) => `<div class="museo-fact"><div class="museo-fact-label">${f.l}</div><div class="museo-fact-val">${f.v}</div></div>`).join('');
+    document.getElementById('modal-tags').innerHTML = data.tags.map((t) => `<span class="museo-tag">${t}</span>`).join('');
+    this.el.classList.add('active');
+    this.el.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    this.el.focus();
+  },
+  close() {
+    this.el.classList.remove('active');
+    this.el.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    if (this.previousFocus && typeof this.previousFocus.focus === 'function') {
+      this.previousFocus.focus();
+    }
+  }
+};
+
+function getDetailHref(id) {
+  return config.detailPages[id] || null;
+}
+
+function renderMuseos() {
+  const grid = document.getElementById('museos-grid');
+  grid.innerHTML = MUSEOS.map((m) => {
+    const href = getDetailHref(m.id);
+    const isAvailable = Boolean(href);
+    const hrefAttr = isAvailable ? href : '#museos';
+    const statusText = isAvailable ? 'Ver m\u00e1s info \u2192' : 'Pr\u00f3ximamente';
+    const cardClass = `museo-card${isAvailable ? '' : ' is-unavailable'}`;
+    const ariaDisabled = isAvailable ? '' : 'aria-disabled="true"';
+    const relAttr = isAvailable ? '' : 'data-id="'+m.id+'" data-open-modal="true"';
+    return `
+    <a class="${cardClass}" href="${hrefAttr}" ${ariaDisabled} ${relAttr}>
+      <div class="museo-img">
+        <img src="${m.img}" alt="${m.nombre}" loading="lazy">
+        <div class="museo-country">${m.pais}</div>
+      </div>
+      <div class="museo-body">
+        <div class="museo-name">${m.nombre}</div>
+        <div class="museo-city">${m.ciudad}</div>
+        <p class="museo-desc">${m.descCorta}</p>
+        <div>${m.tags.map(t=>`<span class="museo-tag">${t}</span>`).join('')}</div>
+        <div class="museo-ver-mas">${statusText}</div>
+      </div>
+    </a>`;
+  }).join('');
+
+  grid.querySelectorAll('[data-open-modal="true"]').forEach((el) => {
+    el.addEventListener('click', (e) => {
+      e.preventDefault();
+      const id = el.getAttribute('data-id');
+      const museum = MUSEOS.find((x) => x.id === id);
+      modal.open(museum);
+    });
+  });
+}
+
+function cerrarModal() {
+  modal.close();
+}
+
+async function handleForm(e) {
+  e.preventDefault();
+  const form = e.target;
+  const submitBtn = form.querySelector('button[type="submit"]');
+  const data = {
+    nombre: form.nombre.value.trim(),
+    email: form.email.value.trim(),
+    asunto: form.asunto.value.trim() || 'Consulta desde el sitio web',
+    mensaje: form.mensaje.value.trim()
+  };
+
+  const originalBtnText = submitBtn.textContent;
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'Enviando...';
+
+  try {
+    const payload = new FormData();
+    payload.append('nombre', data.nombre);
+    payload.append('email', data.email);
+    payload.append('asunto', data.asunto);
+    payload.append('mensaje', data.mensaje);
+    payload.append('_replyto', data.email);
+    payload.append('_subject', data.asunto);
+
+    const res = await fetch(config.formspreeEndpoint, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json'
+      },
+      body: payload
+    });
+
+    if (!res.ok) throw new Error(`Formspree HTTP ${res.status}`);
+
+    alert('Mensaje enviado correctamente. Te respondo a la brevedad.');
+    form.reset();
+  } catch (error) {
+    const subject = encodeURIComponent(data.asunto);
+    const body = encodeURIComponent(
+      `Nombre: ${data.nombre}\n` +
+      `Email: ${data.email}\n\n` +
+      `${data.mensaje}`
+    );
+    const mailto = `mailto:${config.contactEmail}?subject=${subject}&body=${body}`;
+    window.location.href = mailto;
+    alert('No se pudo enviar por formulario. Abrimos tu correo con el mensaje precargado.');
+    console.warn('Fallo de Formspree, se aplico mailto fallback:', error);
+  } finally {
+    submitBtn.disabled = false;
+    submitBtn.textContent = originalBtnText;
+  }
+}
+
+function init() {
+  const nav = document.getElementById('site-nav');
+  const navToggle = document.getElementById('nav-toggle');
+  const navMenu = document.getElementById('nav-menu');
+
+  if (nav && navToggle && navMenu) {
+    const closeMenu = () => {
+      nav.classList.remove('is-open');
+      navToggle.setAttribute('aria-expanded', 'false');
+      navToggle.setAttribute('aria-label', 'Abrir menú');
+    };
+
+    navToggle.addEventListener('click', () => {
+      const isOpen = nav.classList.toggle('is-open');
+      navToggle.setAttribute('aria-expanded', String(isOpen));
+      navToggle.setAttribute('aria-label', isOpen ? 'Cerrar menú' : 'Abrir menú');
+    });
+
+    navMenu.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', closeMenu);
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeMenu();
+    });
+
+    window.addEventListener('resize', () => {
+      if (window.innerWidth >= 768) closeMenu();
+    });
+  }
+
+  modal.init();
+  renderMuseos();
+  youtube.render();
+}
+
+init();
+</script>
+</body>
+</html>

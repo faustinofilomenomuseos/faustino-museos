@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Museo Hermitage | San Petersburgo, Rusia — Faustino Filomeno Museólogo</title>
+<meta name="description" content="Todo sobre el Museo Hermitage: historia, colección y claves para visitarlo en San Petersburgo.">
+<meta name="keywords" content="Museo Hermitage, San Petersburgo, arte europeo, Palacio de Invierno, museología">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500&family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+  :root { --negro:#0a0908;--crema:#f4ede4;--dorado:#c9a84c;--dorado-claro:#e8c97a;--gris:#2a2825;--texto:#1a1816;--texto-suave:#6b6560; }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:'DM Sans',sans-serif;background:var(--crema);color:var(--texto);overflow-x:hidden}
+
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1.2rem 4rem;background:rgba(10,9,8,0.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(201,168,76,0.2)}
+  .nav-logo{font-family:'Bebas Neue',sans-serif;font-size:1.1rem;color:var(--dorado);letter-spacing:0.1em;text-decoration:none;display:flex;flex-direction:column;line-height:1.1}
+  .nav-logo span{font-family:'DM Sans',sans-serif;font-size:0.6rem;font-weight:300;letter-spacing:0.2em;text-transform:uppercase;color:rgba(244,237,228,0.45)}
+  .nav-links{display:flex;align-items:center;gap:2rem;list-style:none}
+  .nav-back{font-size:0.9rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:rgba(244,237,228,0.7);text-decoration:none;display:inline-flex;align-items:center;min-height:2.25rem;transition:color 0.2s}
+  .nav-back:hover{color:var(--dorado)}
+  .nav-toggle{display:none;width:2.75rem;height:2.75rem;border:1px solid rgba(201,168,76,0.35);background:transparent;color:var(--crema);align-items:center;justify-content:center;cursor:pointer;flex-shrink:0}
+  .nav-toggle:focus-visible{outline:2px solid var(--dorado);outline-offset:2px}
+  .nav-toggle-lines{display:inline-flex;flex-direction:column;gap:0.3rem}
+  .nav-toggle-lines span{width:1.2rem;height:1px;background:var(--crema);display:block;transition:transform 0.2s,opacity 0.2s}
+
+  .museo-hero{min-height:70vh;position:relative;display:flex;align-items:flex-end;overflow:hidden;padding-top:5rem}
+  .museo-hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(0.45)}
+  .museo-hero-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,9,8,0.95) 0%,rgba(10,9,8,0.3) 60%,transparent 100%)}
+  .museo-hero-content{position:relative;z-index:2;padding:4rem 6rem;max-width:900px}
+  .museo-breadcrumb{font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--dorado);margin-bottom:1rem;display:flex;align-items:center;gap:0.5rem}
+  .museo-hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.5rem,5vw,4.5rem);font-weight:900;color:var(--crema);line-height:1.05;margin-bottom:0.75rem}
+  .museo-hero-sub{font-size:1rem;color:rgba(244,237,228,0.6);display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
+  .museo-badge{background:rgba(201,168,76,0.15);border:1px solid rgba(201,168,76,0.3);color:var(--dorado);font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;padding:0.3rem 0.8rem}
+
+  .museo-body{max-width:1100px;margin:0 auto;padding:5rem 4rem;display:grid;grid-template-columns:1fr 340px;gap:4rem;align-items:start}
+  .museo-content h2{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:700;margin:2.5rem 0 1rem;line-height:1.2}
+  .museo-content h2:first-child{margin-top:0}
+  .museo-content p{font-size:0.95rem;line-height:1.9;color:var(--texto-suave);margin-bottom:1.2rem}
+  .museo-content strong{color:var(--texto)}
+
+  .museo-sidebar{position:sticky;top:7rem}
+  .sidebar-card{background:var(--negro);padding:2rem;margin-bottom:1.5rem}
+  .sidebar-title{font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:0.15em;color:var(--dorado);margin-bottom:1.25rem}
+  .sidebar-fact{display:flex;justify-content:space-between;align-items:center;padding:0.6rem 0;border-bottom:1px solid rgba(255,255,255,0.06);font-size:0.82rem}
+  .sidebar-fact:last-child{border-bottom:none}
+  .sidebar-fact-label{color:rgba(244,237,228,0.45);letter-spacing:0.05em}
+  .sidebar-fact-val{color:var(--crema);font-weight:500;text-align:right}
+  .sidebar-tags{display:flex;flex-wrap:wrap;gap:0.4rem;margin-top:0.5rem}
+  .sidebar-tag{font-size:0.65rem;letter-spacing:0.08em;text-transform:uppercase;padding:0.25rem 0.6rem;border:1px solid rgba(201,168,76,0.25);color:rgba(244,237,228,0.5)}
+
+  .btn-primary{padding:0.85rem 2rem;background:var(--dorado);color:var(--negro);font-size:0.8rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;border:none;cursor:pointer;display:inline-block;transition:background 0.2s,transform 0.2s;width:100%;text-align:center;margin-top:0.5rem}
+  .btn-primary:hover{background:var(--dorado-claro);transform:translateY(-2px)}
+
+  .museo-galeria{max-width:1100px;margin:0 auto;padding:0 4rem 5rem}
+  .galeria-title{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:700;margin-bottom:2rem}
+  .galeria-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+  .galeria-img{aspect-ratio:4/3;overflow:hidden}
+  .galeria-img img{width:100%;height:100%;object-fit:cover;filter:grayscale(15%);transition:filter 0.4s,transform 0.4s}
+  .galeria-img:hover img{filter:grayscale(0%);transform:scale(1.04)}
+
+  .museos-relacionados{background:var(--negro);padding:5rem 0}
+  .museos-relacionados .inner{max-width:1100px;margin:0 auto;padding:0 4rem}
+  .rel-title{font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--crema);margin-bottom:2rem}
+  .rel-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1rem}
+  .rel-card{background:var(--gris);border:1px solid rgba(201,168,76,0.1);overflow:hidden;text-decoration:none;display:block;transition:transform 0.3s,border-color 0.3s}
+  .rel-card:hover{transform:translateY(-3px);border-color:rgba(201,168,76,0.35)}
+  .rel-card img{width:100%;aspect-ratio:16/9;object-fit:cover;filter:grayscale(20%)}
+  .rel-card:hover img{filter:grayscale(0%)}
+  .rel-card-body{padding:0.85rem 1rem}
+  .rel-card-country{font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--dorado);margin-bottom:0.25rem}
+  .rel-card-name{font-family:'Playfair Display',serif;font-size:0.9rem;color:var(--crema);line-height:1.3}
+
+  footer{background:var(--negro);border-top:1px solid rgba(201,168,76,0.15);padding:2rem 4rem;display:flex;justify-content:space-between;align-items:center}
+  .footer-logo{font-family:'Bebas Neue',sans-serif;font-size:1.2rem;color:var(--dorado);letter-spacing:0.1em}
+  .footer-copy{font-size:0.75rem;color:rgba(244,237,228,0.3)}
+
+  @media(max-width:900px){
+    nav{padding:1rem 1.5rem}
+    .museo-hero-content{padding:3rem 1.5rem}
+    .museo-body{grid-template-columns:1fr;padding:3rem 1.5rem}
+    .museo-sidebar{position:static}
+    .museo-galeria,.museos-relacionados .inner{padding:0 1.5rem 3rem}
+    .galeria-grid{grid-template-columns:1fr 1fr}
+    footer{flex-direction:column;gap:0.5rem;text-align:center;padding:1.5rem}
+  }
+
+  @media(max-width:767px){
+    nav{padding:0.85rem 1rem;align-items:center}
+    .nav-logo{font-size:0.92rem;letter-spacing:0.08em}
+    .nav-logo span{font-size:0.54rem;letter-spacing:0.14em}
+    .nav-toggle{display:inline-flex}
+    .nav-links{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;align-items:stretch;gap:0;background:rgba(10,9,8,0.98);border-top:1px solid rgba(201,168,76,0.2);border-bottom:1px solid rgba(201,168,76,0.2);padding:0.5rem 1rem 0.9rem}
+    nav.is-open .nav-links{display:flex}
+    .nav-back{width:100%;min-height:2.9rem;padding:0.7rem 0.25rem;font-size:0.9rem;letter-spacing:0.11em}
+    nav.is-open .nav-toggle-lines span:nth-child(1){transform:translateY(0.4rem) rotate(45deg)}
+    nav.is-open .nav-toggle-lines span:nth-child(2){opacity:0}
+    nav.is-open .nav-toggle-lines span:nth-child(3){transform:translateY(-0.4rem) rotate(-45deg)}
+  }
+</style>
+</head>
+<body>
+
+<nav id="site-nav">
+  <a href="index.html" class="nav-logo">Faustino Filomeno<span>Museólogo</span></a>
+  <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menú" aria-controls="nav-menu" aria-expanded="false" type="button">
+    <span class="nav-toggle-lines" aria-hidden="true"><span></span><span></span><span></span></span>
+  </button>
+  <ul class="nav-links" id="nav-menu">
+    <li><a href="index.html#museos" class="nav-back">← Volver a museos</a></li>
+  </ul>
+</nav>
+
+<div class="museo-hero">
+  <img class="museo-hero-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Hermitage_museum_2.jpg?width=1280" alt="Museo Hermitage">
+  <div class="museo-hero-overlay"></div>
+  <div class="museo-hero-content">
+    <div class="museo-breadcrumb">🇷🇺 Rusia · San Petersburgo</div>
+    <h1>Museo Hermitage</h1>
+    <div class="museo-hero-sub">
+      <span class="museo-badge">Arte</span>
+      <span class="museo-badge">Historia</span>
+      <span class="museo-badge">Antigüedad</span>
+      <span style="color:rgba(244,237,228,0.4);font-size:0.85rem">Fundado en 1764 · Uno de los más grandes del mundo</span>
+    </div>
+  </div>
+</div>
+
+<div class="museo-body">
+  <div class="museo-content">
+    <h2>¿Qué es el Museo Hermitage?</h2>
+    <p>El Hermitage es uno de los museos más grandes y prestigiosos del mundo. Su sede principal ocupa el histórico Palacio de Invierno, en San Petersburgo.</p>
+    <p>Reúne más de <strong>3 millones de obras</strong> y objetos de arte, con colecciones que abarcan desde antigüedades hasta grandes maestros europeos.</p>
+
+    <h2>Historia del museo</h2>
+    <p>Fue fundado en <strong>1764</strong> por Catalina la Grande y creció a partir de la colección imperial rusa. Con el tiempo se convirtió en una de las instituciones centrales del patrimonio europeo.</p>
+    <p>El complejo actual incluye varios edificios históricos conectados, donde arquitectura y colección forman una experiencia única.</p>
+    <p>Hoy es un museo fundamental para estudiar arte italiano, flamenco, francés y ruso en un mismo recorrido.</p>
+
+    <h2>Las piezas más importantes</h2>
+    <p>Entre sus piezas y salas más destacadas están:</p>
+    <p><strong>Madonna Litta</strong>, atribuida al entorno de Leonardo da Vinci y pieza emblemática del museo.</p>
+    <p><strong>Las salas del Palacio de Invierno</strong>, especialmente la Escalera Jordán y los salones de gala.</p>
+    <p><strong>Colecciones de Rembrandt y maestros flamencos</strong>, de referencia internacional.</p>
+
+    <h2>Cómo visitarlo</h2>
+    <p>El Hermitage maneja ticket pago y suele tener alta demanda turística. Comprar online con anticipación es clave.</p>
+    <p>Para una primera visita, priorizá secciones y edificios para no perder tiempo en traslados internos.</p>
+    <p>Reservá al menos 3 horas para highlights, y una jornada completa para un recorrido más profundo.</p>
+  </div>
+
+  <div class="museo-sidebar">
+    <div class="sidebar-card">
+      <div class="sidebar-title">Datos del museo</div>
+      <div class="sidebar-fact"><span class="sidebar-fact-label">País</span><span class="sidebar-fact-val">🇷🇺 Rusia</span></div>
+      <div class="sidebar-fact"><span class="sidebar-fact-label">Ciudad</span><span class="sidebar-fact-val">San Petersburgo</span></div>
+      <div class="sidebar-fact"><span class="sidebar-fact-label">Fundado</span><span class="sidebar-fact-val">1764</span></div>
+      <div class="sidebar-fact"><span class="sidebar-fact-label">Obras</span><span class="sidebar-fact-val">3 millones+</span></div>
+      <div class="sidebar-fact"><span class="sidebar-fact-label">Visitantes/año</span><span class="sidebar-fact-val">6 millones</span></div>
+      <div class="sidebar-fact"><span class="sidebar-fact-label">Pieza estrella</span><span class="sidebar-fact-val">Madonna Litta</span></div>
+      <div class="sidebar-fact"><span class="sidebar-fact-label">Entrada</span><span class="sidebar-fact-val">Gratuita</span></div>
+      <div class="sidebar-fact"><span class="sidebar-fact-label">Cierre</span><span class="sidebar-fact-val">25 diciembre</span></div>
+      <div class="sidebar-tags" style="margin-top:1rem">
+        <span class="sidebar-tag">Arte</span>
+        <span class="sidebar-tag">Historia</span>
+        <span class="sidebar-tag">Antigüedad</span>
+        <span class="sidebar-tag">Arte europeo</span>
+        <span class="sidebar-tag">Historia rusa</span>
+      </div>
+    </div>
+    <div class="sidebar-card">
+      <div class="sidebar-title">Ver en YouTube</div>
+      <p style="font-size:0.82rem;color:rgba(244,237,228,0.5);line-height:1.7;margin-bottom:1rem">Seguí el canal de Faustino Filomeno para videos sobre los grandes museos del mundo.</p>
+      <a href="https://www.youtube.com/@FaustinoFilomeno" target="_blank" class="btn-primary">Ver canal →</a>
+    </div>
+  </div>
+</div>
+
+<div class="museo-galeria">
+  <div class="galeria-title">Galería de imágenes</div>
+  <div class="galeria-grid">
+    <div class="galeria-img"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Hermitage_museum_2.jpg?width=1280" alt="Hermitage exterior" loading="lazy"></div>
+    <div class="galeria-img"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Hermitage,_St._Petersburg,_Russia.jpg?width=800" alt="Interior del Hermitage" loading="lazy"></div>
+    <div class="galeria-img"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Leonardo_da_Vinci_-_Madonna_Litta.jpg?width=800" alt="Madonna Litta" loading="lazy"></div>
+  </div>
+</div>
+
+<section class="museos-relacionados">
+  <div class="inner">
+    <div class="rel-title">Otros museos del mundo</div>
+    <div class="rel-grid">
+      <a href="louvre.html" class="rel-card">
+        <img src="images/museos/louvre.jpg" alt="Museo del Louvre" loading="lazy">
+        <div class="rel-card-body"><div class="rel-card-country">🇫🇷 Francia</div><div class="rel-card-name">Museo del Louvre</div></div>
+      </a>
+      <a href="moma.html" class="rel-card">
+        <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Moma_ny.jpg?width=640" alt="MoMA" loading="lazy">
+        <div class="rel-card-body"><div class="rel-card-country">🇺🇸 EE.UU.</div><div class="rel-card-name">MoMA</div></div>
+      </a>
+      <a href="prado.html" class="rel-card">
+        <img src="https://commons.wikimedia.org/wiki/Special:FilePath/The_Prado_Museum_(Museo_del_Prado),_Madrid_(2).jpg?width=640" alt="Prado" loading="lazy">
+        <div class="rel-card-body"><div class="rel-card-country">🇪🇸 España</div><div class="rel-card-name">Museo del Prado</div></div>
+      </a>
+      <a href="mnba.html" class="rel-card">
+        <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Museo_Nacional_de_Bellas_Artes_(Buenos_Aires)_-_20231202_132951.jpg?width=640" alt="MNBA" loading="lazy">
+        <div class="rel-card-body"><div class="rel-card-country">🇦🇷 Argentina</div><div class="rel-card-name">Museo Nacional de Bellas Artes</div></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">Faustino Filomeno</div>
+  <div class="footer-copy">© 2025 · Museólogo · Tucumán, Argentina</div>
+</footer>
+
+<script>
+(() => {
+  const nav = document.getElementById('site-nav');
+  const navToggle = document.getElementById('nav-toggle');
+  const navMenu = document.getElementById('nav-menu');
+  if (!nav || !navToggle || !navMenu) return;
+
+  const closeMenu = () => {
+    nav.classList.remove('is-open');
+    navToggle.setAttribute('aria-expanded', 'false');
+    navToggle.setAttribute('aria-label', 'Abrir menú');
+  };
+
+  navToggle.addEventListener('click', () => {
+    const isOpen = nav.classList.toggle('is-open');
+    navToggle.setAttribute('aria-expanded', String(isOpen));
+    navToggle.setAttribute('aria-label', isOpen ? 'Cerrar menú' : 'Abrir menú');
+  });
+
+  navMenu.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', closeMenu);
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeMenu();
+  });
+
+  window.addEventListener('resize', () => {
+    if (window.innerWidth >= 768) closeMenu();
+  });
+})();
+</script>
+</body>
+</html>
