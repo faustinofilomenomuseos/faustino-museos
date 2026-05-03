@@ -403,35 +403,35 @@ const MUSEOS = [
   { id:'british', nombre:'British Museum', pais:'🇬🇧 Reino Unido', ciudad:'📍 Londres, Reino Unido',
     descCorta:'El primer museo público del mundo. 8 millones de objetos que abarcan 2 millones de años de historia humana.',
     desc:'Fundado en 1753, fue el primer museo público nacional del mundo. Su colección abarca 2 millones de años de historia humana con más de 8 millones de objetos, aunque solo una fracción se exhibe permanentemente. Entre sus piezas más famosas están la Piedra Rosetta y los Mármoles del Partenón, estos últimos en disputa con Grecia desde hace décadas.',
-    img:'https://images.unsplash.com/photo-1518998053574-53fd61274657?q=80&w=1000&auto=format&fit=crop',
+    img:'images/museos/british.jpg',
     tags:['Arqueología','Historia mundial','Antigüedad'],
     facts:[{l:'Fundado',v:'1753'},{l:'Objetos',v:'8 millones+'},{l:'Visitantes/año',v:'6 millones'},{l:'Pieza estrella',v:'Piedra Rosetta'}]
   },
   { id:'moma', nombre:'MoMA', pais:'🇺🇸 Estados Unidos', ciudad:'📍 Nueva York, EE.UU.',
     descCorta:'La institución que define qué es arte moderno. Desde Van Gogh hasta Warhol, el museo más influyente del siglo XX.',
     desc:'El Museo de Arte Moderno es considerado la institución más influyente en la definición del arte moderno y contemporáneo. Fundado en 1929, su colección incluye más de 200.000 piezas que abarcan pintura, escultura, fotografía, cine y diseño industrial. La Noche Estrellada de Van Gogh es su obra más icónica.',
-    img:'https://images.unsplash.com/photo-1554941829-202a0b2403b8?q=80&w=1000&auto=format&fit=crop',
+    img:'images/museos/moma.jpg',
     tags:['Arte Moderno','Contemporáneo','Diseño'],
     facts:[{l:'Fundado',v:'1929'},{l:'Obras',v:'200.000+'},{l:'Visitantes/año',v:'3 millones'},{l:'Pieza estrella',v:'La Noche Estrellada'}]
   },
   { id:'prado', nombre:'Museo del Prado', pais:'🇪🇸 España', ciudad:'📍 Madrid, España',
     descCorta:'La pinacoteca más importante del mundo hispanohablante. Goya, Velázquez y El Bosco en un edificio neoclásico imponente.',
     desc:'La pinacoteca más importante del mundo hispanohablante y una de las más relevantes del planeta. Su colección se centra en arte europeo del siglo XII al XIX, con especial énfasis en los maestros españoles. Goya, Velázquez, El Bosco y Rubens son sus grandes estrellas. El edificio neoclásico fue diseñado por Juan de Villanueva a finales del siglo XVIII.',
-    img:'https://commons.wikimedia.org/wiki/Special:FilePath/The_Prado_Museum_(Museo_del_Prado),_Madrid_(2).jpg?width=1280',
+    img:'images/museos/prado.png',
     tags:['Pintura','Arte español','Renacimiento'],
     facts:[{l:'Fundado',v:'1819'},{l:'Obras',v:'20.000+'},{l:'Visitantes/año',v:'3,2 millones'},{l:'Pieza estrella',v:'Las Meninas'}]
   },
   { id:'hermitage', nombre:'Museo Hermitage', pais:'🇷🇺 Rusia', ciudad:'📍 San Petersburgo, Rusia',
     descCorta:'Uno de los museos más grandes del planeta. El Palacio de Invierno de los zares convertido en templo del arte mundial.',
-    desc:'Uno de los museos más grandes del mundo con más de 3 millones de obras. El complejo incluye el Palacio de Invierno, antigua residencia de los zares rusos. La colección abarca arte egipcio antiguo, arte europeo de los siglos XIII al XX y arte de culturas de todo el mundo. Fue fundado por la zarina Catalina la Grande en 1764.',
-    img:'https://commons.wikimedia.org/wiki/Special:FilePath/Hermitage_museum_2.jpg?width=1280',
+    desc:'Uno de los museos más grandes del mundo con más de 3 millones de obras. El complejo incluye el Palacio de Invierno, antigua residencia de los zares русские. La colección abarca arte egipcio antiguo, arte europeo de los siglos XIII al XX y arte de culturas de todo el mundo. Fue fundado por la zarina Catalina la Grande en 1764.',
+    img:'images/museos/hermitage.jpg',
     tags:['Arte europeo','Historia rusa','Arte oriental'],
     facts:[{l:'Fundado',v:'1764'},{l:'Obras',v:'3 millones+'},{l:'Visitantes/año',v:'4 millones'},{l:'Edificios',v:'5 palacios'}]
   },
   { id:'mnba', nombre:'Museo Nacional de Bellas Artes', pais:'🇦🇷 Argentina', ciudad:'📍 Buenos Aires, Argentina',
     descCorta:'El museo de arte más importante de Argentina. 12.000 obras, entrada gratuita y los grandes nombres del arte argentino.',
     desc:'El museo de arte más importante de Argentina y uno de los principales de América Latina. Fundado en 1895, reúne más de 12.000 obras de artistas argentinos e internacionales. Su colección incluye obras de Rodin, Goya, Rembrandt y los grandes pintores argentinos del siglo XIX y XX. La entrada es siempre gratuita, lo que lo convierte en un espacio accesible para todos.',
-    img:'https://commons.wikimedia.org/wiki/Special:FilePath/Museo_Nacional_de_Bellas_Artes_(Buenos_Aires)_-_20231202_132951.jpg?width=1280',
+    img:'images/museos/mnba.jpg',
     tags:['Arte argentino','Latinoamérica','Gratis'],
     facts:[{l:'Fundado',v:'1895'},{l:'Obras',v:'12.000+'},{l:'Entrada',v:'Gratuita'},{l:'Ubicación',v:'Recoleta, CABA'}]
   }
@@ -603,7 +603,7 @@ function renderMuseos() {
     const href = getDetailHref(m.id);
     const isAvailable = Boolean(href);
     const hrefAttr = isAvailable ? href : '#museos';
-    const statusText = isAvailable ? 'Ver m\u00e1s info \u2192' : 'Pr\u00f3ximamente';
+    const statusText = isAvailable ? 'Ver más info →' : 'Próximamente';
     const cardClass = `museo-card${isAvailable ? '' : ' is-unavailable'}`;
     const ariaDisabled = isAvailable ? '' : 'aria-disabled="true"';
     const relAttr = isAvailable ? '' : 'data-id="'+m.id+'" data-open-modal="true"';
